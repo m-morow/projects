@@ -36,6 +36,4 @@ bbox_props = dict(boxstyle="round", fc="w", ec="0.5", alpha=0.9)
 ax.text(2.1, 0.405, "vs = 1.41044 V", ha="center", va="center", size=11,
         bbox=bbox_props)
 
-#plt.savefig('physics391_lab03_405.pdf', dpi='figure')
-
 plt.show()
