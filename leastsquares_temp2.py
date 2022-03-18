@@ -15,7 +15,8 @@ from scipy.optimize import minimize
 plt.style.use('default')
 rcParams['figure.dpi'] = 150
 
-df = pd.read_csv("./MIDETROI.txt", delim_whitespace=True, header=None)
+#Data source https://academic.udayton.edu/kissock/http/Weather/citylistUS.htm
+df = pd.read_csv("./MIDETROI.txt", delim_whitespace=True, header=None)  
 df.head()
 df.columns = [['Month','day','year','Temp']]
 df.head()
@@ -30,17 +31,19 @@ xs = k
 ys = T
 
 #Least squares fitting--------------------------
+#"Without" climate change
 def func(x, A, B, C):
     return  A + B*np.cos(x*2*np.pi/365.25)  + C*np.sin(x*2*np.pi/365.25)
 
 popt, pcov = scipy.optimize.curve_fit(func, xs, ys)
 
+#"With" climate change
 def func_climate_change(x, A, B, C, D):
     return A + B*np.cos(x*2*np.pi/365.25)  + C*np.sin(x*2*np.pi/365.25) + D*x*x
 
 popt2, pcov2 = scipy.optimize.curve_fit(func_climate_change, xs, ys)
 
-#Alternative least squares fitting using matrices general form (need tweaking)
+#Alternative least squares fitting using matrices general form (needs tweaking)
 '''
 Ycos  = np.cos((np.pi/6)*ys)
 Ysin  = np.sin((np.pi/6)*ys)
@@ -60,7 +63,7 @@ beta2 = betas[2]
 plt.plot(T0 + (beta1*Ycos) + (beta2*Ysin),c='r')
 '''
 
-#Generate values for popt plot------------------
+#Generate values for least squares plot------------------
 x_max = xs.max()
 xx = np.linspace(0,x_max,1000)
 
