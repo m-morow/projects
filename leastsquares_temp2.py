@@ -63,17 +63,17 @@ beta2 = betas[2]
 plt.plot(T0 + (beta1*Ycos) + (beta2*Ysin),c='r')
 '''
 
-#Generate values for least squares plot------------------
+#Generate values for least squares plot---------
 x_max = xs.max()
-xx = np.linspace(0,x_max,1000)
+xx = np.linspace(0, x_max, 1000)
 
 
 #Plotting---------------------------------------
-plt.plot(xs,ys,label='data')
-plt.plot(xx,(func(xx,*popt)),c='k',ls='--',label='fit')
-plt.plot(xx, popt2[0]+xx*popt2[3],c='r',ls='--',alpha=0.5,label='fit2')
+plt.plot(xs, ys, label='data')
+plt.plot(xx, (func(xx,*popt)), c='k', ls='--', label='fit')
+plt.plot(xx, popt2[0]+xx*popt2[3], c='r', ls='--', alpha=0.5, label='fit2')
 plt.xlabel('Date')
-plt.xticks(np.arange(0,x_max,step=1825),['1995','2000','2005','2010','2015','2020'])
+plt.xticks(np.arange(0, x_max, step=1825),['1995','2000','2005','2010','2015','2020'])
 plt.ylabel('Temperature (F)')
 plt.title('Detroit 1995-2020 temperature data least squares regression')
 plt.legend()
@@ -84,11 +84,11 @@ def get_day(x):
     return func(x, popt[0], popt[1],  popt[2])
 
 max_x = scipy.optimize.fmin(lambda x: -get_day(x), 0)
-solutionmax = scipy.optimize.minimize_scalar(lambda x: -get_day(x), bounds=[0,365], method='bounded')
-solutionmin = scipy.optimize.minimize_scalar(lambda x: get_day(x), bounds=[0,365], method='bounded')
+warmest_day = scipy.optimize.minimize_scalar(lambda x: -get_day(x), bounds=[0,365], method='bounded')
+coldest_day = scipy.optimize.minimize_scalar(lambda x: get_day(x), bounds=[0,365], method='bounded')
 
-print('Warmest day:',solutionmax.x)
-print('Coldest day:',solutionmin.x)
-print('With climate change model, temperatures increase',popt2[3]*365,'F per year')
+print('Warmest day:', warmest_day.x)
+print('Coldest day:', coldest_day.x)
+print('With climate change model, temperatures increase', popt2[3]*365, 'F per year')
 
 
