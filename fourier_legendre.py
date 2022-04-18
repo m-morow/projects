@@ -1,3 +1,8 @@
+# Calculate Fourier-Legendre ak coefficients for n = 0-20
+# Plot Fourier-Legendre series for
+# f(x) = 0 -1<0<1
+# f(x) = x 0<x<1
+
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.special import legendre
