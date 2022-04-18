@@ -1,3 +1,10 @@
+# Plot Fourier series for 
+# f(x) = 0 for -1<x<0 
+# f(x) = x for 0<x<1
+# where n = 1,2,3,6,9,20
+
+# Very inefficient, definitely need to automate!
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
