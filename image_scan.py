@@ -1,3 +1,5 @@
+# Creates a 3D surface plot or 3d histogram of crystal image scan
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
