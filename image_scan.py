@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 import matplotlib as mpl
 mpl.use('macosx')
 
-data_name = 'Yale 2022 Substrate, 04082022'
-data_array = np.loadtxt('./SUBSTRATE_ImageScan.txt', skiprows=13)
+data_name = 'Image scan of test data'
+data_array = np.loadtxt('./TBCL_FineScan1_copy.txt', skiprows=13)
 A = data_array.T
 length = int(np.sqrt(len(A)))
 data = np.reshape(A, (-1, length))  # Makes into matrix
-labels = np.linspace(-0.5,0.5,11) # Manually change this
+labels = np.linspace(-1,1,21) # Manually change this
 labels = np.round(labels,2)
 
 # For surface plot
@@ -26,8 +26,11 @@ surf = h.plot_surface(X, Y, data, cmap=plt.cm.hsv, edgecolors='k', lw=0.6)
 h.set_zlabel('counts')
 h.set_ylabel('Theta')
 h.set_xlabel('Phi')
-h.set_xticks(range(0,length),labels,rotation=45)
-h.set_yticks(range(0,length),labels,rotation=45)
+h.set_xticks(range(0, length), labels)
+h.set_yticks(range(0, length), labels)
+n = 4  # Keeps every 2nd label
+[l.set_visible(False) for (i,l) in enumerate(h.xaxis.get_ticklabels()) if i % n != 0]
+[l.set_visible(False) for (i,l) in enumerate(h.yaxis.get_ticklabels()) if i % n != 0]
 f.colorbar(surf, shrink=0.5, aspect=5)
 plt.title('{}'.format(data_name))
 plt.show()
