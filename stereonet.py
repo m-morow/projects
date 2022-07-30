@@ -1,3 +1,5 @@
+#Create stereonet of strikes / dips, and poles
+
 import numpy as np
 import mplstereonet
 import matplotlib.pyplot as plt
