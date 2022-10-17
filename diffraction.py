@@ -57,15 +57,6 @@ def gaussxwab(N,a,b):
     x,w = gaussxw(N)
     return 0.5*(b-a)*x+0.5*(b+a),0.5*(b-a)*w
 
-def gauss_quad_simple(func, T):
-  xs, weights = gaussxwab(N, a, T)
-  s = 0
-
-  for i in range(N):
-    s += weights[i]*func(xs[i])
-
-  return s
-
 def gauss_quad(func, N, a, b, q_func, x_in):
   xs, weights = gaussxwab(N, a, b)
   s = 0
