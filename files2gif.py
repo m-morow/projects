@@ -2,7 +2,7 @@
 import imageio
 import os
 
-path = './'
+path = '/Users/mata7085/Desktop/creep_files/'
 
 image_folder = os.fsencode(path)
 
@@ -17,4 +17,4 @@ filenames.sort() # this iteration technique has no built in order, so sort the f
 
 images = list(map(lambda filename: imageio.imread(filename), filenames))
 
-imageio.mimsave(os.path.join('synth_prop.gif'), images, duration = 0.3) # duration in seconds
+imageio.mimsave(os.path.join('synth_prop.gif'), images, fps = 0.5) # use fps call to adjust duration
